@@ -12,8 +12,8 @@
 
 
 % INPUT:
-%   - theta1: first layer trained weights of a neural network
-%   - theta2: second layer trainer weights of a neural network
+%   - theta1: first layer trained weights (matrix) of the neural network
+%   - theta2: second layer trainer weights (matrix) of the neural network
 %   - X: data matrix
 %
 % OUTPUT:
@@ -29,14 +29,14 @@
 function [P] = predictionNN(theta1, theta2, X)
     m = size(X,1);
     P = zeros(m,1);
-    
+
     X = [ones(m,1) X];
     z1 = X * theta1';
     H1 = sigmoid(z1);
-    
+
     H1 = [ones(m,1) H1];
     z2 = H1 * theta2';
     H2 = sigmoid(z2);
-    
+
     [pVal, P] = max(H2, [], 2);
 end
